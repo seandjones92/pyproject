@@ -78,6 +78,35 @@ apps:
 
 ''')
 
+    bintemplate = Template('''\
+#!/usr/bin/env python3
+
+import $project
+$project.cli()
+''')
+
+    pythontemplate = Template('''\
+#!/usr/bin/env python
+
+import click
+
+@click.command()
+def cli(name):
+    print("Hello World!")
+''')
+
+    os.mkdir('bin')
+    binfilelocation = "bin/" + name
+    with open(binfilelocation, "w") as binfile:
+      binfilecontent = bintemplate.substitute({'project': name})
+      binfile.write(binfilecontent)
+
+    os.mkdir(name)
+    pythonfilelocation = name + "/__init__.py"
+    with open(pythonfilelocation, "w") as pythonfile:
+      pythonfilecontent = pythontemplate.template
+      pythonfile.write(pythonfilecontent)
+
     with open("Pipfile", "w") as pipenvfile:
         pipenvcontent = pipenvtemplate.template
         pipenvfile.write(pipenvcontent)
