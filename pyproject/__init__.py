@@ -91,7 +91,7 @@ $project.cli()
 import click
 
 @click.command()
-def cli(name):
+def cli():
     print("Hello World!")
 ''')
 
