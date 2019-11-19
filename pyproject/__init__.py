@@ -4,18 +4,14 @@ import click
 import os
 from string import Template
 
-import filetemplates
+from pyproject import filetemplates
 
 
 @click.command()
 @click.option('-n', '--name', prompt='Project name',
               help="Name used for project and executable")
 def cli(name):
-    """Create a skeleton of a Python CLI project.
-
-    Creates a simple 'Hello World!' Python CLI project. The project is created
-    so that you can immediately run `snapcraft` and package it up.
-    """
+    """Create and manage Python CLI projects."""
     os.mkdir(name)
     os.chdir(name)
 
