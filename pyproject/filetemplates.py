@@ -97,10 +97,16 @@ def cli():
     print("Hello World!")
 ''')
 
-    templatelist.append([bintemplate, str("bin/" + name)])
-    templatelist.append([pipenvtemplate, "Pipenv"])
-    templatelist.append([pythontemplate, str(name + "/__init__.py")])
-    templatelist.append([setuptemplate, "setup.py"])
-    templatelist.append([snapcrafttemplate, "snap/snapcraft.yaml"])
+    binpath = "bin/" + name
+    pipenvpath = "Pipenv"
+    pythonpath = name + "/__init__.py"
+    setuppath = "setup.py"
+    snapcraftpath = "snap/snapcraft.yaml"
+
+    templatelist.append([bintemplate, binpath])
+    templatelist.append([pipenvtemplate, pipenvpath])
+    templatelist.append([pythontemplate, pythonpath])
+    templatelist.append([setuptemplate, setuppath])
+    templatelist.append([snapcrafttemplate, snapcraftpath])
     
     return templatelist
