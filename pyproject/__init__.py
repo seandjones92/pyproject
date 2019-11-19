@@ -9,7 +9,7 @@ from pyproject import filetemplates
 
 @click.group()
 @click.pass_context
-def cli():
+def cli(versionflag):
     """Create and manage Python CLI projects."""
     pass
 
