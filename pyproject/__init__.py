@@ -27,7 +27,6 @@ def create(name):
     os.mkdir('snap')
 
     templatelist = filetemplates.templates(name)
-    print(templatelist)
 
     for i in templatelist:
         filecontent = i[0].substitute({'project': name})
