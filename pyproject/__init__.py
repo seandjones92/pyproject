@@ -7,11 +7,19 @@ from string import Template
 from pyproject import filetemplates
 
 
+@click.group()
+@click.pass_context
+def cli():
+    """Create and manage Python CLI projects."""
+    pass
+
+
 @click.command()
 @click.option('-n', '--name', prompt='Project name',
               help="Name used for project and executable")
-def cli(name):
-    """Create and manage Python CLI projects."""
+def create(name):
+    """Create a project skeleton."""
+
     os.mkdir(name)
     os.chdir(name)
 
@@ -42,3 +50,13 @@ def cli(name):
         snapcraftcontent = filetemplates.snapcrafttemplate.substitute({
                                                                       'project': name})
         snapcraftfile.write(snapcraftcontent)
+
+@click.command()
+def version():
+    """Set the version of the current project."""
+    print('''
+    This will eventually set the version in both the "setup.py" and "snapcraft.yaml" files.
+    ''')
+
+cli.add_command(create)
+cli.add_command(version)
