@@ -1,6 +1,13 @@
 from string import Template
 
-pipenvtemplate = Template('''\
+def templates(name):
+    """Get a list of all the file templates.
+    
+    Pass the `name` variable to help construct file paths.
+    """
+    templatelist = []
+
+    pipenvtemplate = Template('''\
 [[source]]
 url = "https://pypi.python.org/simple"
 verify_ssl = true
@@ -19,7 +26,7 @@ bpython = "*"
 python_version = "3.7"
 ''')
 
-setuptemplate = Template('''\
+    setuptemplate = Template('''\
 #!/usr/bin/env python3
 from setuptools import setup, find_packages
 setup(
@@ -37,7 +44,7 @@ setup(
 )
 ''')
 
-snapcrafttemplate = Template('''\
+    snapcrafttemplate = Template('''\
 name: $project # you probably want to 'snapcraft register <name>'
 base: core18 # the base snap is the execution environment for this snap
 version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
@@ -67,19 +74,33 @@ apps:
 
 ''')
 
-bintemplate = Template('''\
+    bintemplate = Template('''\
 #!/usr/bin/env python3
+
+"""Entry point for $project."""
 
 import $project
 $project.cli()
 ''')
 
-pythontemplate = Template('''\
+    pythontemplate = Template('''\
 #!/usr/bin/env python
 
 import click
 
 @click.command()
 def cli():
+    """Prints 'Hello World!'
+    
+    Replace this with your $project logic.
+    """
     print("Hello World!")
 ''')
+
+    templatelist.append([bintemplate, str("bin/" + name)])
+    templatelist.append([pipenvtemplate, "Pipenv"])
+    templatelist.append([pythontemplate, str(name + "/__init__.py")])
+    templatelist.append([setuptemplate, "setup.py"])
+    templatelist.append([snapcrafttemplate, "snap/snapcraft.yaml"])
+    
+    return templatelist

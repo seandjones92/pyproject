@@ -22,34 +22,44 @@ def create(name):
 
     os.mkdir(name)
     os.chdir(name)
-
-    os.mkdir('bin')
-    binfilelocation = "bin/" + name
-    with open(binfilelocation, "w") as binfile:
-        binfilecontent = filetemplates.bintemplate.substitute(
-            {'project': name})
-        binfile.write(binfilecontent)
-
     os.mkdir(name)
-    pythonfilelocation = name + "/__init__.py"
-    with open(pythonfilelocation, "w") as pythonfile:
-        pythonfilecontent = filetemplates.pythontemplate.template
-        pythonfile.write(pythonfilecontent)
-
-    with open("Pipfile", "w") as pipenvfile:
-        pipenvcontent = filetemplates.pipenvtemplate.template
-        pipenvfile.write(pipenvcontent)
-
-    with open("setup.py", 'w') as setupfile:
-        setupcontent = filetemplates.setuptemplate.substitute(
-            {'project': name})
-        setupfile.write(setupcontent)
-
+    os.mkdir('bin')
     os.mkdir('snap')
-    with open("snap/snapcraft.yaml", 'w') as snapcraftfile:
-        snapcraftcontent = filetemplates.snapcrafttemplate.substitute({
-                                                                      'project': name})
-        snapcraftfile.write(snapcraftcontent)
+
+    templatelist = filetemplates.templates(name)
+    print(templatelist)
+
+    for i in templatelist:
+        filecontent = i[0].substitute({'project': name})
+        filelocation = i[1]
+        with open(filelocation, "w") as skelfile:
+            skelfile.write(filecontent)
+
+    # with open(binfilelocation, "w") as binfile:
+    #     binfilecontent = filetemplates.bintemplate.substitute(
+    #         {'project': name})
+    #     binfile.write(binfilecontent)
+
+    # with open(pythonfilelocation, "w") as pythonfile:
+    #     pythonfilecontent = filetemplates.pythontemplate.substitute({
+    #                                                                 'project': name})
+    #     pythonfile.write(pythonfilecontent)
+
+    # with open(pipenvfilelocation, "w") as pipenvfile:
+    #     pipenvcontent = filetemplates.pipenvtemplate.substitute(
+    #         {'project': name})
+    #     pipenvfile.write(pipenvcontent)
+
+    # with open(setupfilelocation, 'w') as setupfile:
+    #     setupcontent = filetemplates.setuptemplate.substitute(
+    #         {'project': name})
+    #     setupfile.write(setupcontent)
+
+    # with open(snapcraftfilelocation, 'w') as snapcraftfile:
+    #     snapcraftcontent = filetemplates.snapcrafttemplate.substitute({
+    #                                                                   'project': name})
+    #     snapcraftfile.write(snapcraftcontent)
+
 
 @click.command()
 def version():
@@ -57,6 +67,7 @@ def version():
     print('''
     This will eventually set the version in both the "setup.py" and "snapcraft.yaml" files.
     ''')
+
 
 cli.add_command(create)
 cli.add_command(version)
