@@ -4,6 +4,10 @@ def templates(name):
     """Get a list of all the file templates.
     
     Pass the `name` variable to help construct file paths.
+
+    Returns a list of lists, the first element of each embedded list is the
+    template, the second element is the filepath the resulting file should be
+    written to.
     """
     templatelist = []
 
