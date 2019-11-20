@@ -16,10 +16,12 @@ def cli(helpflag):
 
 
 @click.command()
-@click.option('-n', '--name', prompt='Project name',
-              help="Name used for project and executable")
+@click.argument('name')
 def create(name):
-    """Create a project skeleton."""
+    """Create a project skeleton.
+    
+    Pass a string to be the name of the project created.
+    """
 
     os.mkdir(name)
     os.chdir(name)
@@ -37,10 +39,13 @@ def create(name):
 
 
 @click.command()
-@click.option('-n', '--number', prompt='Set project to this version number',
-              help='Number to set the project version to. I.E. "1.0"')
+@click.argument('number')
 def version(number):
-    """Set the version of the current project."""
+    """Set the version of the current project.
+    
+    Pass a number to indicate the new version of the project.
+    For example: 1.2
+    """
 
     # setup regex patterns and version strings for files to change 
     setuplocation = 'setup.py'
