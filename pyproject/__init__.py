@@ -37,29 +37,34 @@ def create(name):
 
 
 @click.command()
-@click.option('-v', '--ver', prompt='Set project to this version number',
+@click.option('-n', '--number', prompt='Set project to this version number',
               help='Number to set the project version to. I.E. "1.0"')
-def version(ver):
+def version(number):
     """Set the version of the current project."""
-    # change version in setup.py
-    fin = open('setup.py', 'rt')
-    setupdata = fin.read()
-    fin.close()
-    setupversion = 'version="' + ver + '"'
-    setupdata = re.sub('version=".*"', setupversion, setupdata)
-    fin = open('setup.py', 'wt')
-    fin.write(setupdata)
-    fin.close()
-    # change version in snapcraft.yaml
-    fin = open('snap/snapcraft.yaml', 'rt')
-    setupdata = fin.read()
-    fin.close()
-    setupversion = 'version: \'' + ver + '\''
-    setupdata = re.sub('version: \'.*\'', setupversion, setupdata)
-    fin = open('snap/snapcraft.yaml', 'wt')
-    fin.write(setupdata)
-    fin.close()
 
+    # setup regex patterns and version strings for files to change 
+    setuplocation = 'setup.py'
+    setupversion = 'version="' + number + '"'
+    setuppattern = 'version=".*"'
+
+    snaplocation = 'snap/snapcraft.yaml'
+    snapversion = 'version: \'' + number + '\''
+    snappattern = 'version: \'.*\''
+
+    # build a list of the above information to make iteration easier
+    versionlisting = []
+    versionlisting.append([setuplocation, setupversion, setuppattern])
+    versionlisting.append([snaplocation, snapversion, snappattern])
+
+    # iterate through the above list and apply the version change
+    for i in versionlisting:
+        workingfile = open(i[0], 'rt')
+        filedata = workingfile.read()
+        workingfile.close()
+        filedata = re.sub(i[2], i[1], filedata)
+        workingfile = open(i[0], 'wt')
+        workingfile.write(filedata)
+        workingfile.close()
 
 cli.add_command(create)
 cli.add_command(version)
