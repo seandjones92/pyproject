@@ -10,7 +10,7 @@ from pyproject import filetemplates
 
 @click.group()
 @click.pass_context
-def cli(versionflag):
+def cli(helpflag):
     """Create and manage Python CLI projects."""
     pass
 
@@ -30,7 +30,7 @@ def create(name):
     templatelist = filetemplates.templates(name)
 
     for i in templatelist:
-        filecontent = i[0].substitute({'project': name})
+        filecontent = i[0].substitute({'project': name}) # TODO: this should be in the filetemplates.py file
         filelocation = i[1]
         with open(filelocation, "w") as skelfile:
             skelfile.write(filecontent)
