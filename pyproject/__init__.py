@@ -41,12 +41,22 @@ def create(name):
               help='Number to set the project version to. I.E. "1.0"')
 def version(ver):
     """Set the version of the current project."""
+    # change version in setup.py
     fin = open('setup.py', 'rt')
     setupdata = fin.read()
     fin.close()
     setupversion = 'version="' + ver + '"'
     setupdata = re.sub('version=".*"', setupversion, setupdata)
     fin = open('setup.py', 'wt')
+    fin.write(setupdata)
+    fin.close()
+    # change version in snapcraft.yaml
+    fin = open('snap/snapcraft.yaml', 'rt')
+    setupdata = fin.read()
+    fin.close()
+    setupversion = 'version: \'' + ver + '\''
+    setupdata = re.sub('version: \'.*\'', setupversion, setupdata)
+    fin = open('snap/snapcraft.yaml', 'wt')
     fin.write(setupdata)
     fin.close()
 
