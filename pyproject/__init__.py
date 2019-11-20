@@ -2,6 +2,7 @@
 
 import click
 import os
+import re
 from string import Template
 
 from pyproject import filetemplates
@@ -36,11 +37,21 @@ def create(name):
 
 
 @click.command()
-def version():
+@click.option('-v', '--ver', prompt='Set project to this version number',
+              help='Number to set the project version to. I.E. "1.0"')
+def version(ver):
     """Set the version of the current project."""
     print('''
     This will eventually set the version in both the "setup.py" and "snapcraft.yaml" files.
     ''')
+    fin = open('setup.py', 'rt')
+    setupdata = fin.read()
+    fin.close()
+    setupversion = 'version="' + ver + '"'
+    setupdata = re.sub('version=".*"', setupversion, setupdata)
+    fin = open('setup.py', 'wt')
+    fin.write(setupdata)
+    fin.close()
 
 
 cli.add_command(create)
