@@ -41,9 +41,6 @@ def create(name):
               help='Number to set the project version to. I.E. "1.0"')
 def version(ver):
     """Set the version of the current project."""
-    print('''
-    This will eventually set the version in both the "setup.py" and "snapcraft.yaml" files.
-    ''')
     fin = open('setup.py', 'rt')
     setupdata = fin.read()
     fin.close()
