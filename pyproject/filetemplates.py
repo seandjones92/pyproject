@@ -6,12 +6,13 @@ def templates(name):
     Pass the `name` variable to help construct file paths.
 
     Returns a list of lists, the first element of each embedded list is the
-    template, the second element is the filepath the resulting file should be
-    written to.
+    file content, the second element is the filepath the resulting file should
+    be written to.
     """
     templatelist = []
 
-    pipenvtemplate = Template('''\
+    pipenvpath = "Pipenv"
+    pipenvcontent = Template('''\
 [[source]]
 url = "https://pypi.python.org/simple"
 verify_ssl = true
@@ -28,9 +29,10 @@ bpython = "*"
 
 [requires]
 python_version = "3.7"
-''')
+''').substitute({'project': name})
 
-    setuptemplate = Template('''\
+    setuppath = "setup.py"
+    setupcontent = Template('''\
 #!/usr/bin/env python3
 from setuptools import setup, find_packages
 setup(
@@ -46,9 +48,10 @@ setup(
         $project=$project:cli
     \'\'\'
 )
-''')
+''').substitute({'project': name})
 
-    snapcrafttemplate = Template('''\
+    snapcraftpath = "snap/snapcraft.yaml"
+    snapcraftcontent = Template('''\
 name: $project # you probably want to 'snapcraft register <name>'
 base: core18 # the base snap is the execution environment for this snap
 version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
@@ -76,18 +79,20 @@ apps:
       LANG: C.UTF-8
     command: bin/$project
 
-''')
+''').substitute({'project': name})
 
-    bintemplate = Template('''\
+    binpath = "bin/" + name
+    bincontent = Template('''\
 #!/usr/bin/env python3
 
 """Entry point for $project."""
 
 import $project
 $project.cli()
-''')
+''').substitute({'project': name})
 
-    pythontemplate = Template('''\
+    pythonpath = name + "/__init__.py"
+    pythoncontent = Template('''\
 #!/usr/bin/env python
 
 import click
@@ -99,18 +104,13 @@ def cli():
     Replace this with your $project logic.
     """
     print("Hello World!")
-''')
+''').substitute({'project': name})
 
-    binpath = "bin/" + name
-    pipenvpath = "Pipenv"
-    pythonpath = name + "/__init__.py"
-    setuppath = "setup.py"
-    snapcraftpath = "snap/snapcraft.yaml"
 
-    templatelist.append([bintemplate, binpath])
-    templatelist.append([pipenvtemplate, pipenvpath])
-    templatelist.append([pythontemplate, pythonpath])
-    templatelist.append([setuptemplate, setuppath])
-    templatelist.append([snapcrafttemplate, snapcraftpath])
+    templatelist.append([bincontent, binpath])
+    templatelist.append([pipenvcontent, pipenvpath])
+    templatelist.append([pythoncontent, pythonpath])
+    templatelist.append([setupcontent, setuppath])
+    templatelist.append([snapcraftcontent, snapcraftpath])
     
     return templatelist

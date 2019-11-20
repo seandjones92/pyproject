@@ -32,7 +32,7 @@ def create(name):
     templatelist = filetemplates.templates(name)
 
     for i in templatelist:
-        filecontent = i[0].substitute({'project': name}) # TODO: this should be in the filetemplates.py file
+        filecontent = i[0]
         filelocation = i[1]
         with open(filelocation, "w") as skelfile:
             skelfile.write(filecontent)
