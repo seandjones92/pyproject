@@ -11,7 +11,7 @@ def templates(name):
     """
     templatelist = []
 
-    pipenvpath = "Pipenv"
+    pipenvpath = "Pipfile"
     pipenvcontent = Template('''\
 [[source]]
 url = "https://pypi.python.org/simple"
