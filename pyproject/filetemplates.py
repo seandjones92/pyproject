@@ -118,7 +118,7 @@ def entrypoint():
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*$py.class
+*py.class
 *.pyc
 
 # C extensions
