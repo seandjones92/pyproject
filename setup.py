@@ -10,6 +10,6 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        pyproject=pyproject:cli
+        pyproject=pyproject:entrypoint
     '''
 )
