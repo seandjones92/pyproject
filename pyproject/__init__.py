@@ -10,7 +10,7 @@ from pyproject import filetemplates
 
 @click.group()
 @click.pass_context
-def cli(helpflag):
+def entrypoint(helpflag):
     """Create and manage Python CLI projects."""
     pass
 
@@ -71,5 +71,5 @@ def version(number):
         workingfile.write(filedata)
         workingfile.close()
 
-cli.add_command(create)
-cli.add_command(version)
+entrypoint.add_command(create)
+entrypoint.add_command(version)
