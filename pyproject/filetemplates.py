@@ -45,7 +45,7 @@ setup(
     ],
     entry_points=\'\'\'
         [console_scripts]
-        $project=$project:cli
+        $project=$project:entrypoint
     \'\'\'
 )
 ''').substitute({'project': name})
@@ -88,7 +88,7 @@ apps:
 """Entry point for $project."""
 
 import $project
-$project.cli()
+$project.entrypoint()
 ''').substitute({'project': name})
 
     pythonpath = name + "/__init__.py"
@@ -98,7 +98,7 @@ $project.cli()
 import click
 
 @click.command()
-def cli():
+def entrypoint():
     """Prints 'Hello World!'
     
     Replace this with your $project logic.
