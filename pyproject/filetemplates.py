@@ -253,5 +253,6 @@ dmypy.json
     templatelist.append([pythoncontent, pythonpath])
     templatelist.append([setupcontent, setuppath])
     templatelist.append([snapcraftcontent, snapcraftpath])
+    templatelist.append([gitignorecontent, gitignorepath])
     
     return templatelist
