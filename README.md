@@ -1,7 +1,6 @@
 # pyproject
 
 TODO:
-- refactor so that the `cli` function in `__init__.py` is something like `commandentry` -- THIS INCLUDES FOR PROJECTS CREATED BY pyproject
 - breakout create command for different types of apps (e.g pyproject create cli/gui/ncurses projectname)
 - pyproject should create a `.gitignore`
 - create tests for this project
