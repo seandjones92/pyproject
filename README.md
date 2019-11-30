@@ -2,6 +2,7 @@
 
 TODO:
 - breakout create command for different types of apps (e.g pyproject create cli/gui/ncurses projectname)
+- pyproject should create a `.gitignore`
 - create tests for this project
 - create initial test for projects that pyproject creates
 - create debug config for vscode
