@@ -115,3 +115,5 @@ def entrypoint():
     print("Hello World!")
 ''').substitute({'project': name})
     templatelist.append([pythonpath, pythoncontent])
+
+    return templatelist

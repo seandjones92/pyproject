@@ -157,3 +157,5 @@ dmypy.json
 .pyre/
 ''').substitute({'project': name})
     templatelist.append([gitignorepath, gitignorecontent])
+
+    return templatelist
