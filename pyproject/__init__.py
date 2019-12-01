@@ -15,10 +15,16 @@ def entrypoint(helpflag):
     pass
 
 
+@click.group()
+@click.pass_context
+def create(name):
+    """Create a project skeleton."""
+    pass
+
 @click.command()
 @click.argument('name')
-def create(name):
-    """Create a project skeleton.
+def cli(name):
+    """Create a cli project skeleton.
     
     Pass a string to be the name of the project created.
     """
@@ -36,7 +42,6 @@ def create(name):
         filelocation = i[1]
         with open(filelocation, "w") as skelfile:
             skelfile.write(filecontent)
-
 
 @click.command()
 @click.argument('number')
@@ -73,3 +78,5 @@ def version(number):
 
 entrypoint.add_command(create)
 entrypoint.add_command(version)
+
+create.add_command(cli)
