@@ -29,20 +29,8 @@ def cli(name):
     
     Pass a string to be the name of the project created.
     """
-
-    os.mkdir(name)
-    os.chdir(name)
-    os.mkdir(name)
-    os.mkdir('bin')
-    os.mkdir('snap')
- 
-    templatelist = filetemplates.templates(name)
- 
-    for i in templatelist:
-        filecontent = i[0]
-        filelocation = i[1]
-        with open(filelocation, "w") as skelfile:
-            skelfile.write(filecontent)
+    projectskel = templatebuilder.skelbuilder(name, "cli")
+    projectskel.createskel()
 
 
 @click.command()
