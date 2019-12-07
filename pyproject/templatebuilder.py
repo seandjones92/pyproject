@@ -10,13 +10,15 @@ class skelbuilder(object):
 
     def __init__(self, name, projtype):
         """build the skeleton files"""
-        
+
         self.name = name
         self.projtype = projtype
         self.commonfiles = templates.common.createTemplates(name)
 
         if projtype == "cli":
             self.typefiles = templates.cli.createTemplates(name)
+        elif projtype == 'curses':
+            self.typefiles = templates.curses.createTemplates(name)
 
     def filewriter(self, filelist):
         """write the files to disk"""
