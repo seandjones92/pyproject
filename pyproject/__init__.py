@@ -40,7 +40,8 @@ def curses(name):
     
     Pass a string to be the name of the project created.
     """
-    print("Create an ncurses project named " + name)
+    projectskel = templatebuilder.skelbuilder(name, "curses")
+    projectskel.createskel()
 
 
 @click.command()
