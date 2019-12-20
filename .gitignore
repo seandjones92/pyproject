@@ -1,3 +1,6 @@
+# Project files for emacs that don't need tracking
+.dir-locals.el
+
 # Project files for vscode that don't need tracking
 .vscode/settings.json
 .vscode/.ropeproject/*
