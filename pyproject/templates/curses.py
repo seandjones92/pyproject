@@ -9,9 +9,9 @@ def createTemplates(name):
     Pass `name` as string to help construct file paths and for use with
     template variables.
 
-    Returns a list of lists, the first element of each embedded list is the path
-    the resulting file should be written to, the second element is the file
-    content.
+    Returns a list of lists, the first element of each embedded list is the
+    path the resulting file should be written to, the second element is the
+    file content.
     """
 
     # Create empty list to hold nested lists

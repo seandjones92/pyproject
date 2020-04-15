@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 
 import click
-import os
 import re
-from string import Template
 
-from pyproject import filetemplates
 from pyproject import templatebuilder
 
 
@@ -22,11 +19,12 @@ def create(name):
     """Create a project skeleton."""
     pass
 
+
 @click.command()
 @click.argument('name')
 def cli(name):
     """Create a cli project skeleton.
-    
+
     Pass a string to be the name of the project created.
     """
     projectskel = templatebuilder.skelbuilder(name, "cli")
@@ -37,7 +35,7 @@ def cli(name):
 @click.argument('name')
 def curses(name):
     """Create an ncurses project skeleton.
-    
+
     Pass a string to be the name of the project created.
     """
     projectskel = templatebuilder.skelbuilder(name, "curses")
@@ -48,7 +46,7 @@ def curses(name):
 @click.argument('name')
 def gui(name):
     """Create an ncurses project skeleton.
-    
+
     Pass a string to be the name of the project created.
     """
     print("Create an gui project named " + name)
@@ -58,12 +56,12 @@ def gui(name):
 @click.argument('number')
 def version(number):
     """Set the version of the current project.
-    
+
     Pass a number to indicate the new version of the project.
     For example: 1.2
     """
 
-    # setup regex patterns and version strings for files to change 
+    # setup regex patterns and version strings for files to change
     setuplocation = 'setup.py'
     setupversion = 'version="' + number + '"'
     setuppattern = 'version=".*"'
@@ -86,6 +84,7 @@ def version(number):
         workingfile = open(i[0], 'wt')
         workingfile.write(filedata)
         workingfile.close()
+
 
 entrypoint.add_command(create)
 entrypoint.add_command(version)
