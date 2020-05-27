@@ -40,19 +40,19 @@ distributions.</p>
 ![my-snap-name](screenshot.png?raw=true "my-snap-name")
 -->
 
-  - [ ] Update the description of the repository
-  - [ ] Register the snap in the store, **using the preferred upstream name**
-  - [ ] Publish the `devmode` snap in the Snap store edge channel
-  - [ ] Add install instructions to this `README.md`
-  - [ ] Update snap store metadata, icons and screenshots
-  - [ ] Convert the snap to `strict` confinement, or `classic` confinement if it qualifies
-  - [ ] Publish the confined snap in the Snap store beta channel
-  - [ ] Update the install instructions in this `README.md`
-  - [ ] Post a call for testing on the [Snapcraft Forum](https://forum.snapcraft.io) - [link]()
-  - [ ] Add the provided Snapcraft build badge to this `README.md`
-  - [ ] Publish the snap in the Snap store stable channel
-  - [ ] Update the install instructions in this `README.md`
-  - [ ] Post an announcement in the [Snapcraft Forum](https://forum.snapcraft.io) - [link]()
-  - [ ] Ask the Snap Advocacy team to celebrate the snap - [link]()
+- [ ] Update the description of the repository
+- [ ] Register the snap in the store, **using the preferred upstream name**
+- [ ] Publish the `devmode` snap in the Snap store edge channel
+- [ ] Add install instructions to this `README.md`
+- [ ] Update snap store metadata, icons and screenshots
+- [ ] Convert the snap to `strict` confinement, or `classic` confinement if it qualifies
+- [ ] Publish the confined snap in the Snap store beta channel
+- [ ] Update the install instructions in this `README.md`
+- [ ] Post a call for testing on the [Snapcraft Forum](https://forum.snapcraft.io) - [link]()
+- [ ] Add the provided Snapcraft build badge to this `README.md`
+- [ ] Publish the snap in the Snap store stable channel
+- [ ] Update the install instructions in this `README.md`
+- [ ] Post an announcement in the [Snapcraft Forum](https://forum.snapcraft.io) - [link]()
+- [ ] Ask the Snap Advocacy team to celebrate the snap - [link]()
 
 If you have any questions, [post in the Snapcraft forum](https://forum.snapcraft.io).
