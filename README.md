@@ -1,7 +1,6 @@
 # pyproject
 
 ## Todo
-- Complete gui create subcommand
 - add a subcommand for version to get current value
 - add a "clean" subcommand
 - write a legit readme
