@@ -1,14 +1,3 @@
-# pyproject
-
-## My Todo
-- add a subcommand for version to get current value
-- add a "clean" subcommand
-- write a legit readme
-- work on proper snap packaging for this project so it can be published
-- project skeletons should have a dummy test added
-- create tests for this project
-
-
 <!-- <h1 align="center">
   <img src="https://avatars1.githubusercontent.com/u/29598503?v=3&s=256" alt="[Project]">
   <br />
@@ -38,7 +27,15 @@ distributions.</p>
 
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
-## Remaining snaping tasks
+## My Todo
+- [ ] add a subcommand for version to get current value
+- [ ] add a "clean" subcommand
+- [ ] write a legit readme
+- [ ] work on proper snap packaging for this project so it can be published
+- [ ] project skeletons should have a dummy test added
+- [ ] create tests for this project
+
+## Publishing tasks
 <!-- Uncomment and modify this when you have a screenshot
 ![my-snap-name](screenshot.png?raw=true "my-snap-name")
 -->
