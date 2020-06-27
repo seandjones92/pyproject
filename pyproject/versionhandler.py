@@ -2,7 +2,10 @@
 
 class versionhandler(object):
     
-    def __init__(self, number):
+    def __init__(self):
+        pass
+
+    def update(self, number):
         # setup regex patterns and version strings for files to change
         self.setuplocation = 'setup.py'
         self.setupversion = 'version="' + number + '"'
@@ -16,8 +19,6 @@ class versionhandler(object):
         self.versionlisting = []
         self.versionlisting.append([setuplocation, setupversion, setuppattern])
         self.versionlisting.append([snaplocation, snapversion, snappattern])
-
-    def update(self):
         # iterate through the above list and apply the version change
         for i in versionlisting:
             workingfile = open(i[0], 'rt')

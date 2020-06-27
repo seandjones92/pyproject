@@ -56,8 +56,8 @@ def gui(name):
 @click.command()
 @click.argument('number')
 def version(number):
-    vhobject = versionhandler(number)
-    vhobject.update()
+    vhobject = versionhandler()
+    vhobject.update(number)
 #     """Set the version of the current project.
 
 #     Pass a number to indicate the new version of the project.
