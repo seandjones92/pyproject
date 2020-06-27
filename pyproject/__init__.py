@@ -3,7 +3,7 @@
 import click
 
 from pyproject import templatebuilder
-from versionhandler import versionhandler
+from pyproject import versionhandler
 
 
 @click.group()
@@ -55,7 +55,7 @@ def gui(name):
 @click.command()
 @click.argument('number')
 def version(number):
-    vhobject = versionhandler()
+    vhobject = versionhandler.versionhandler()
     vhobject.update(number)
 
 
