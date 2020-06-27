@@ -1,4 +1,6 @@
->#!/usr/bin/env python
+#!/usr/bin/env python
+
+import re
 
 class versionhandler(object):
     
@@ -17,10 +19,11 @@ class versionhandler(object):
 
         # build a list of the above information to make iteration easier
         self.versionlisting = []
-        self.versionlisting.append([setuplocation, setupversion, setuppattern])
-        self.versionlisting.append([snaplocation, snapversion, snappattern])
+        self.versionlisting.append([self.setuplocation, self.setupversion, self.setuppattern])
+        self.versionlisting.append([self.snaplocation, self.snapversion, self.snappattern])
+
         # iterate through the above list and apply the version change
-        for i in versionlisting:
+        for i in self.versionlisting:
             workingfile = open(i[0], 'rt')
             filedata = workingfile.read()
             workingfile.close()
