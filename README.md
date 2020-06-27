@@ -28,7 +28,6 @@ distributions.</p>
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
 ## My Todo
-- [ ] refactor the "version" subcommand to take the logic out of the init file
 - [ ] create a `templates/gui.py` file
 - [ ] add a gui handler to `templatebuilder.py`
 - [ ] add project builder logic to gui command in `__init__.py`
