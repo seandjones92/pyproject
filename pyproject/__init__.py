@@ -43,16 +43,6 @@ def curses(name):
 
 
 @click.command()
-@click.argument('name')
-def gui(name):
-    """Create an ncurses project skeleton.
-
-    Pass a string to be the name of the project created.
-    """
-    print("Create an gui project named " + name)
-
-
-@click.command()
 @click.argument('number')
 def version(number):
     vhobject = versionhandler.versionhandler()
@@ -64,4 +54,3 @@ entrypoint.add_command(version)
 
 create.add_command(cli)
 create.add_command(curses)
-create.add_command(gui)
