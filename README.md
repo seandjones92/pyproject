@@ -28,8 +28,6 @@ distributions.</p>
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
 ## My Todo
-- [ ] add a subcommand for version to get current value
-- [ ] add a "clean" subcommand
 - [ ] write a legit readme
 - [ ] work on proper snap packaging for this project so it can be published
 - [ ] project skeletons should have a dummy test added
