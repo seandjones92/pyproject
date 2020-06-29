@@ -42,11 +42,27 @@ def curses(name):
     projectskel.createskel()
 
 
+@click.group()
+@click.pass_context
+def version(number):
+    """Handle versioning of the project."""
+    pass
+
 @click.command()
 @click.argument('number')
-def version(number):
+def update(number):
+    """Set the new project version
+
+    Pass a number be set as the project version.
+    """
     vhobject = versionhandler.versionhandler()
     vhobject.update(number)
+
+
+@click.command()
+def get():
+    vhobject = versionhandler.versionhandler()
+    vhobject.get()
 
 
 entrypoint.add_command(create)
@@ -54,3 +70,6 @@ entrypoint.add_command(version)
 
 create.add_command(cli)
 create.add_command(curses)
+
+version.add_command(get)
+version.add_command(update)
