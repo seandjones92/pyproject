@@ -4,8 +4,12 @@ import re
 
 
 class versionhandler(object):
+    """Provide methods for interacting with project version.
+    """
 
     def __init__(self):
+        """Get the currently set versions from the existing config.
+        """
         with open('setup.py') as workingfile:
             self.setupversion = re.findall(
                 r'[0-9]*\.[0-9]*', workingfile.read())[0]
@@ -14,6 +18,11 @@ class versionhandler(object):
                 r'[0-9]*\.[0-9]*', workingfile.read())[0]
 
     def update(self, number):
+        """Update the project version in all configuration files.
+
+        Args:
+            number (number): Version number to set in config files.
+        """
         # setup regex patterns and version strings for files to change
         setuplocation = 'setup.py'
         setupversion = 'version="' + number + '"'
@@ -37,7 +46,3 @@ class versionhandler(object):
             workingfile = open(i[0], 'wt')
             workingfile.write(filedata)
             workingfile.close()
-
-    def get(self):
-        print("setup.py version: \t" + self.setupversion)
-        print("snapcraft version: \t" + self.snapversion)

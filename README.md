@@ -28,10 +28,10 @@ distributions.</p>
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
 ## My Todo
+- [ ] create tests for this project
+- [ ] project skeletons should have a dummy test added
 - [ ] write a legit readme
 - [ ] work on proper snap packaging for this project so it can be published
-- [ ] project skeletons should have a dummy test added
-- [ ] create tests for this project
 
 ## Publishing tasks
 <!-- Uncomment and modify this when you have a screenshot

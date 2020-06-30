@@ -9,14 +9,16 @@ from pyproject import versionhandler
 @click.group()
 @click.pass_context
 def entrypoint(helpflag):
-    """Create and manage Python CLI projects."""
+    """Create and manage Python CLI projects.
+    """
     pass
 
 
 @click.group()
 @click.pass_context
 def create(name):
-    """Create a project skeleton."""
+    """Create a project skeleton.
+    """
     pass
 
 
@@ -25,7 +27,8 @@ def create(name):
 def cli(name):
     """Create a cli project skeleton.
 
-    Pass a string to be the name of the project created.
+    Args:
+        name (string): Name of the project to be created
     """
     projectskel = templatebuilder.skelbuilder(name, "cli")
     projectskel.createskel()
@@ -34,9 +37,10 @@ def cli(name):
 @click.command()
 @click.argument('name')
 def curses(name):
-    """Create an ncurses project skeleton.
+    """Create a curses project skeleton.
 
-    Pass a string to be the name of the project created.
+    Args:
+        name (string): Name of the project to be created
     """
     projectskel = templatebuilder.skelbuilder(name, "curses")
     projectskel.createskel()
@@ -45,15 +49,17 @@ def curses(name):
 @click.group()
 @click.pass_context
 def version(number):
-    """Handle versioning of the project."""
+    """Handle versioning of the project.
+    """
     pass
 
 @click.command()
 @click.argument('number')
 def update(number):
-    """Set the new project version
+    """Set the new project version.
 
-    Pass a number be set as the project version.
+    Args:
+        number (float): Number to set the project version to
     """
     vhobject = versionhandler.versionhandler()
     vhobject.update(number)
@@ -61,8 +67,11 @@ def update(number):
 
 @click.command()
 def get():
+    """Print the project version information.
+    """
     vhobject = versionhandler.versionhandler()
-    vhobject.get()
+    print("setup.py version: \t" + vhobject.setupversion)
+    print("snapcraft version: \t" + vhobject.snapversion)
 
 
 entrypoint.add_command(create)
