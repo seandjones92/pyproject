@@ -70,7 +70,8 @@ def get():
     """Print the project version information.
     """
     vhobject = versionhandler.versionhandler()
-    vhobject.get()
+    print("setup.py version: \t" + vhobject.setupversion)
+    print("snapcraft version: \t" + vhobject.snapversion)
 
 
 entrypoint.add_command(create)
