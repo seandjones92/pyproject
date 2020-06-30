@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import os
 
@@ -6,10 +6,12 @@ from pyproject import templates
 
 
 class skelbuilder(object):
-    """Build out the skeleton for the project type given"""
+    """Build out the skeleton for the project type given.
+    """
 
     def __init__(self, name, projtype):
-        """build the skeleton files"""
+        """Create skeleton files from template.
+        """
 
         self.name = name
         self.projtype = projtype
@@ -21,7 +23,8 @@ class skelbuilder(object):
             self.typefiles = templates.curses.createTemplates(name)
 
     def filewriter(self, filelist):
-        """write the files to disk"""
+        """Write the files to disk.
+        """
 
         for i in filelist:
             filelocation = i[0]
@@ -30,7 +33,8 @@ class skelbuilder(object):
                 skelfile.write(filecontent)
 
     def createskel(self):
-        """high level create function"""
+        """Write the folder structure to disk.
+        """
 
         os.mkdir(self.name)
         os.chdir(self.name)
