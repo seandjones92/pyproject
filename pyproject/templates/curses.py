@@ -77,4 +77,11 @@ def entrypoint():
 ''').substitute({'project': name})
     templatelist.append([pythonpath, pythoncontent])
 
+    requirementspath = "requirements.txt"
+    requirementscontent = Template('''\
+-i https://pypi.python.org/simple
+
+''').substitute({'project': name})
+    templatelist.append([requirementspath, requirementscontent])
+
     return templatelist

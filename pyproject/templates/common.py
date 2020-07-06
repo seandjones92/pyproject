@@ -159,38 +159,6 @@ dmypy.json
 ''').substitute({'project': name})
     templatelist.append([gitignorepath, gitignorecontent])
 
-    snapcraftpath = "snap/snapcraft.yaml"
-    snapcraftcontent = Template('''\
-name: $project # you probably want to 'snapcraft register <name>'
-base: core18 # the base snap is the execution environment for this snap
-version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
-summary: Single-line elevator pitch for your amazing snap # 79 char long summary
-description: |
-  This is my-snap's description. You have a paragraph or two to tell the
-  most important story about your snap. Keep it under 100 words though,
-  we live in tweetspace and your description wants to look good in the snap
-  store.
-
-grade: devel # must be 'stable' to release into candidate/stable channels
-confinement: devmode # use 'strict' once you have the right plugs and slots
-
-parts:
-  my-part:
-    # See 'snapcraft plugins'
-    plugin: python
-    python-version: python3
-    source: .
-
-apps:
-  $project:
-    environment:
-      LC_ALL: C.UTF-8
-      LANG: C.UTF-8
-    command: bin/$project
-
-''').substitute({'project': name})
-    templatelist.append([snapcraftpath, snapcraftcontent])
-
     binpath = "bin/" + name
     bincontent = Template('''\
 #!/usr/bin/env python3
@@ -201,5 +169,63 @@ import $project
 $project.entrypoint()
 ''').substitute({'project': name})
     templatelist.append([binpath, bincontent])
+
+    dockerignorepath = ".dockerignore"
+    dockerignorecontent = Template('''\
+**/__pycache__
+**/.classpath
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.project
+**/.settings
+**/.toolstarget
+**/.vs
+**/.vscode
+**/*.*proj.user
+**/*.dbmdl
+**/*.jfm
+**/azds.yaml
+**/charts
+**/docker-compose*
+**/Dockerfile*
+**/node_modules
+**/npm-debug.log
+**/obj
+**/secrets.dev.yaml
+**/values.dev.yaml
+README.md
+''').substitute({'project': name})
+    templatelist.append([dockerignorepath, dockerignorecontent])
+
+    dockerfilepath = "Dockerfile"
+    dockerfilecontent = Template('''\
+# For more information, please refer to https://aka.ms/vscode-docker-python
+FROM python:3.8-slim-buster
+
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE 1
+
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED 1
+
+# Install pip requirements
+ADD requirements.txt .
+RUN python -m pip install -r requirements.txt
+
+WORKDIR /app
+ADD . /app
+RUN pip install -e . 
+
+# Switching to a non-root user, please refer to https://aka.ms/vscode-docker-python-user-rights
+RUN useradd appuser && chown -R appuser /app
+USER appuser
+
+# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
+CMD ["python", "bin/$project"]
+''').substitute({'project': name})
+    templatelist.append([dockerfilepath, dockerfilecontent])
+
 
     return templatelist

@@ -36,11 +36,11 @@ class skelbuilder(object):
         """Write the folder structure to disk.
         """
 
+        os.chdir('/tmp/project')
         os.mkdir(self.name)
         os.chdir(self.name)
         os.mkdir(self.name)
         os.mkdir('bin')
-        os.mkdir('snap')
 
         self.filewriter(self.commonfiles)
         self.filewriter(self.typefiles)

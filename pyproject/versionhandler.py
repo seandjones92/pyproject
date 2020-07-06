@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import re
 
 
@@ -10,6 +11,7 @@ class versionhandler(object):
     def __init__(self):
         """Get the currently set versions from the existing config.
         """
+        os.chdir('/tmp/project')
         with open('setup.py') as workingfile:
             self.setupversion = re.findall(
                 r'[0-9]*\.[0-9]*', workingfile.read())[0]
@@ -23,6 +25,7 @@ class versionhandler(object):
         Args:
             number (number): Version number to set in config files.
         """
+        os.chdir('/tmp/project')
         # setup regex patterns and version strings for files to change
         setuplocation = 'setup.py'
         setupversion = 'version="' + number + '"'
