@@ -15,9 +15,6 @@ class versionhandler(object):
         with open('setup.py') as workingfile:
             self.setupversion = re.findall(
                 r'[0-9]*\.[0-9]*', workingfile.read())[0]
-        with open('snap/snapcraft.yaml') as workingfile:
-            self.snapversion = re.findall(
-                r'[0-9]*\.[0-9]*', workingfile.read())[0]
 
     def update(self, number):
         """Update the project version in all configuration files.
@@ -31,14 +28,9 @@ class versionhandler(object):
         setupversion = 'version="' + number + '"'
         setuppattern = 'version=".*"'
 
-        snaplocation = 'snap/snapcraft.yaml'
-        snapversion = 'version: \'' + number + '\''
-        snappattern = 'version: \'.*\''
-
         # build a list of the above information to make iteration easier
         versionlisting = []
         versionlisting.append([setuplocation, setupversion, setuppattern])
-        versionlisting.append([snaplocation, snapversion, snappattern])
 
         # iterate through the above list and apply the version change
         for i in versionlisting:

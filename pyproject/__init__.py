@@ -53,6 +53,7 @@ def version(number):
     """
     pass
 
+
 @click.command()
 @click.argument('number')
 def update(number):
@@ -71,7 +72,6 @@ def get():
     """
     vhobject = versionhandler.versionhandler()
     print("setup.py version: \t" + vhobject.setupversion)
-    print("snapcraft version: \t" + vhobject.snapversion)
 
 
 entrypoint.add_command(create)
