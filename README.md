@@ -52,7 +52,8 @@ testcli
 To make an ncurses project:
 
 ```
-➜  Downloads tree testcurses 
+$ pyproject create cli testcurses
+$ tree testcurses 
 testcurses
 ├── bin
 │   └── testcurses
