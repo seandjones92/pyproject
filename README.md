@@ -99,13 +99,9 @@ unittest module the only dependency for testing is [pipenv](https://pipenv.pypa.
 
 ```shell
 $ pipenv run python -m unittest discover tests "test_*.py"
-...
+.....
 ----------------------------------------------------------------------
-Ran 3 tests in 0.001s
+Ran 5 tests in 0.012s
 
 OK
 ```
-
-## Todo
-
-- [ ] project skeletons should have a dummy test added
