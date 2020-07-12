@@ -93,7 +93,7 @@ Successfully installed click-7.1.2
 
 To run the "Hello, World!" package created in the example above you would use the following command. This is something you'll likely want to alias:
 ```shell
-podman run --rm --userns keep-id -v $PWD:/tmp/project:Z --security-opt label=disable localhost/testcli:latest python /usr/local/bin/testcli
+podman run --rm localhost/testcli:latest python /usr/local/bin/testcli
 ```
 
 ## Testing
