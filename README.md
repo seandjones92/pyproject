@@ -67,14 +67,14 @@ testcurses
 2 directories, 6 files
 ```
 
-## Building the created project
+## Building and running the created project
 
 Once the skeleton is created you can create the initial "Hello, World!" package
 with:
 
 ```shell
 $ cd testcli
-$ podman build -t testcli:latest .
+$ podman build -t localhost/testcli:latest .
 STEP 1: FROM python:3.8-slim-buster
 STEP 2: ENV PYTHONDONTWRITEBYTECODE 1
 --> e35548bc808
@@ -89,6 +89,11 @@ Collecting click==7.1.2
      |████████████████████████████████| 82 kB 139 kB/s
 Installing collected packages: click
 Successfully installed click-7.1.2
+```
+
+To run the "Hello, World!" package created in the example above you would use the following command. This is something you'll likely want to alias:
+```shell
+podman run --rm --userns keep-id -v $PWD:/tmp/project:Z --security-opt label=disable localhost/testcli:latest python /usr/local/bin/testcli
 ```
 
 ## Testing
