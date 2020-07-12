@@ -2,7 +2,7 @@
 
 Pyproject is a commandline utility for creating cli and curses based Python
 projects. The resulting skeletons are already configured with base dependencies
-and preconfigued Dockerfiles. 
+and preconfigued Dockerfiles.
 
 ## Getting Started
 
@@ -16,14 +16,14 @@ Ensure you have an [OCI](https://opencontainers.org/) compatible runtime install
 
 The fastest way to get started is to set the following alias:
 
-```
+```shell
 alias pyproject='podman run --rm --userns keep-id -v $PWD:/tmp/project:Z --security-opt label=disable sdj92/pyproject:latest python /usr/local/bin/pyproject'
 ```
 
 Once the alias is set start using pyproject:
 
-```
-$ pyproject --help
+```shell
+pyproject --help
 ```
 
 ## Project Skeletons
@@ -33,9 +33,9 @@ examples.
 
 To make a cli project:
 
-```
+```shell
 $ pyproject create cli testcli
-$ tree testcli 
+$ tree testcli
 testcli
 ├── bin
 │   └── testcli
@@ -51,9 +51,9 @@ testcli
 
 To make an ncurses project:
 
-```
+```shell
 $ pyproject create cli testcurses
-$ tree testcurses 
+$ tree testcurses
 testcurses
 ├── bin
 │   └── testcurses
@@ -70,34 +70,34 @@ testcurses
 ## Building the created project
 
 Once the skeleton is created you can create the initial "Hello, World!" package
-with: 
+with:
 
-```
+```shell
 $ cd testcli
 $ podman build -t testcli:latest .
-```
-
-## Version management
-
-The pyproject command also allows you to get and set the version information in 
-the project. Currently this is just a quick way to set the version in `setup.py`
-but can easily be expanded to handle other files that might hold project version 
-such as the Dockerfile.
-
-```
-$ pyproject version get
-setup.py version: 	0.1
-$ pyproject version update 2.3
-setup.py version: 	2.3
+STEP 1: FROM python:3.8-slim-buster
+STEP 2: ENV PYTHONDONTWRITEBYTECODE 1
+--> e35548bc808
+STEP 3: ENV PYTHONUNBUFFERED 1
+--> 7dfa9bbf0d5
+STEP 4: ADD requirements.txt .
+--> f73dd038ef6
+STEP 5: RUN python -m pip install -r requirements.txt
+Looking in indexes: https://pypi.python.org/simple
+Collecting click==7.1.2
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+     |████████████████████████████████| 82 kB 139 kB/s
+Installing collected packages: click
+Successfully installed click-7.1.2
 ```
 
 ## Testing
 
-I'm using unittest for my testing. Currently the tests are not on the master 
+I'm using unittest for my testing. Currently the tests are not on the master
 branch, they are still a work in progress. Since I am using the built in
 unittest module the only dependency for testing is [pipenv](https://pipenv.pypa.io/en/latest/).
 
-```
+```shell
 $ pipenv run python -m unittest discover tests "test_*.py"
 ...
 ----------------------------------------------------------------------
@@ -106,7 +106,6 @@ Ran 3 tests in 0.001s
 OK
 ```
 
-## My Todo
-- [ ] create tests for this project
+## Todo
+
 - [ ] project skeletons should have a dummy test added
-- [ ] write a legit readme
