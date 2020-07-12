@@ -64,7 +64,7 @@ import curses
 def entrypoint():
     """Prints 'Hello World!'
 
-    Replace this with your cursesexample logic.
+    Replace this with your $project logic.
     """
     screen = curses.initscr()
     screen.clear()
