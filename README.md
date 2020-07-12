@@ -34,7 +34,7 @@ examples.
 To make a cli project:
 
 ```shell
-$ pyproject create cli testcli
+$ pyproject cli testcli
 $ tree testcli
 testcli
 ├── bin
@@ -52,7 +52,7 @@ testcli
 To make an ncurses project:
 
 ```shell
-$ pyproject create cli testcurses
+$ pyproject cli testcurses
 $ tree testcurses
 testcurses
 ├── bin
