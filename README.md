@@ -1,8 +1,10 @@
 # Pyproject
 
-Pyproject is a commandline utility for creating cli and curses based Python
-projects. The resulting skeletons are already configured with base dependencies
-and preconfigued Dockerfiles.
+Pyproject is a commandline utility for creating cli and curses based Python projects. The resulting skeletons are already configured with base dependencies and preconfigued Dockerfiles.
+
+I started working on this when I found myself spending more time than I wanted starting up projects than working on them. I'd get an idea for something then quickly get lost in the weeds of "how do I set up Click for a project?" or "how did I contianerize that before?". Now I can build out a project template in about 2 seconds that is ready to be packaged and has some basic functionality out of the box. 
+
+I chose to deliver this as a contianer image for portability, the project skeletons this creates are also configured to be delivered as container images. 
 
 ## Getting Started
 
