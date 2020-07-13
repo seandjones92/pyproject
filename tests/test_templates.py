@@ -106,7 +106,7 @@ class test_templates(unittest.TestCase):
 
     @patch('pyproject.templatebuilder.os')
     @patch('pyproject.templatebuilder.open')
-    def test_skelbuildercli(self, mock_myos, mock_myopen):
+    def test_skelbuildercli(self, mock_myopen, mock_myos):
         testskel = templatebuilder.skelbuilder('testproject', 'cli')
         testskel.createskel()
         controlarglist = [call('.gitignore', 'w'),
@@ -117,13 +117,13 @@ class test_templates(unittest.TestCase):
                           call('setup.py', 'w'),
                           call('testproject/__init__.py', 'w'),
                           call('requirements.txt', 'w')]
-        self.assertListEqual(mock_myos.call_args_list,
+        self.assertListEqual(mock_myopen.call_args_list,
                              controlarglist, msg="Lists should be the same")
 
 
     @patch('pyproject.templatebuilder.os')
     @patch('pyproject.templatebuilder.open')
-    def test_skelbuildercurses(self, mock_myos, mock_myopen):
+    def test_skelbuildercurses(self, mock_myopen, mock_myos):
         testskel = templatebuilder.skelbuilder('testproject', 'curses')
         testskel.createskel()
         controlarglist = [call('.gitignore', 'w'),
@@ -134,5 +134,5 @@ class test_templates(unittest.TestCase):
                           call('setup.py', 'w'),
                           call('testproject/__init__.py', 'w'),
                           call('requirements.txt', 'w')]
-        self.assertListEqual(mock_myos.call_args_list,
+        self.assertListEqual(mock_myopen.call_args_list,
                              controlarglist, msg="Lists should be the same")
