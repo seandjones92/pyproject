@@ -12,7 +12,7 @@ I chose to deliver this as a contianer image for portability, the project skelet
 
 Ensure you have an [OCI](https://opencontainers.org/) compatible runtime installed.
 
-> **NOTE: I'm using [Podman](https://podman.io) instead of docker for running my images locally. If you are using Docker just swap out "podman" for "docker" in the following commands. I am not currently testing functionality for Docker.**
+> **NOTE: I'm using [Podman](https://podman.io) instead of docker for running my images locally. The alias for Podman below has some extra options as the container is run rootless so SELinux tends to get in the way when writing files to the host.**
 
 ### Quick Start
 
@@ -20,6 +20,12 @@ The fastest way to get started is to set the following alias:
 
 ```shell
 alias pyproject='podman run --rm --userns keep-id -v $PWD:/tmp/project:Z --security-opt label=disable sdj92/pyproject:latest python /usr/local/bin/pyproject'
+```
+
+Or, if you are using Docker the following should work:
+
+```shell
+alias pyproject='docker run --rm -v $PWD:/tmp/project:Z sdj92/pyproject:latest python /usr/local/bin/pyproject'
 ```
 
 Once the alias is set start using pyproject:
