@@ -118,8 +118,14 @@ class test_templates(unittest.TestCase):
                           call('testproject/__init__.py', 'w'),
                           call('requirements.txt', 'w')]
         self.assertListEqual(mock_myopen.call_args_list,
-                             controlarglist, msg="Lists should be the same")
-
+                             controlarglist, msg="Open calls for CLI should match")
+        methodcalllist = [call.chdir('/tmp/project'),
+                          call.mkdir('testproject'),
+                          call.chdir('testproject'),
+                          call.mkdir('testproject'),
+                          call.mkdir('bin')]
+        self.assertListEqual(mock_myos.method_calls,
+                             methodcalllist, msg="OS calls for CLI should match")
 
     @patch('pyproject.templatebuilder.os')
     @patch('pyproject.templatebuilder.open')
@@ -135,4 +141,11 @@ class test_templates(unittest.TestCase):
                           call('testproject/__init__.py', 'w'),
                           call('requirements.txt', 'w')]
         self.assertListEqual(mock_myopen.call_args_list,
-                             controlarglist, msg="Lists should be the same")
+                             controlarglist, msg="Open calls for CLI should match")
+        methodcalllist = [call.chdir('/tmp/project'),
+                          call.mkdir('testproject'),
+                          call.chdir('testproject'),
+                          call.mkdir('testproject'),
+                          call.mkdir('bin')]
+        self.assertListEqual(mock_myos.method_calls,
+                             methodcalllist, msg="OS calls for CLI should match")
