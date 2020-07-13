@@ -100,9 +100,7 @@ podman run --rm localhost/testcli:latest python /usr/local/bin/testcli
 
 ## Testing
 
-I'm using unittest for my testing. Currently the tests are not on the master
-branch, they are still a work in progress. Since I am using the built in
-unittest module the only dependency for testing is [pipenv](https://pipenv.pypa.io/en/latest/).
+I'm using unittest. The only dependency for testing is [pipenv](https://pipenv.pypa.io/en/latest/).
 
 ```shell
 $ pipenv run python -m unittest discover tests "test_*.py"
